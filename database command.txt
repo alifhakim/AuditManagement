@@ -1,0 +1,30 @@
+//active virtual env
+audit_env\Scripts\activate.bat
+
+
+//create database
+db.create_all()
+
+//drop database
+db.drop_all()
+
+//import table
+from audit import User
+
+//create user
+user_1=User(username='aleppp',email='alep@gmail.com',password='kubaaa',firstName='alep',lastName='kun',position='manager')
+
+//add user 
+db.session.add(name of the user)
+
+//add user into database
+db.session.commit()
+
+//get all user
+User.query.all()
+
+//find first user
+User.query.first()
+
+//filter by username
+User.query.filter_by(username='nama aleppp').all()

@@ -1,0 +1,5 @@
+open vs studio
+on vs studio terminal type audit_env\Scripts\activate.bat
+type python run.py
+
+
