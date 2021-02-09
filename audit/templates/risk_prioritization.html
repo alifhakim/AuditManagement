@@ -1,0 +1,248 @@
+{% extends 'layout.html'%}
+{% block content %}
+ 
+<style>
+  #btn_cancel{
+  position: relative;
+  left: 680px;
+  border-radius: 50px;
+  width: 100px;
+}
+#btn_submit{
+  position: relative;
+  left: 0px;
+  border-radius: 30px;
+  width:100px;
+}
+
+#risk {
+  
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#risk td, #risk th, #add_prioritization td, #add_prioritization th  {
+  border: 1px solid #fff;
+  padding: 8px;
+}
+
+#risk tr {
+    background-color: #ffffff;}
+
+#risk tr:hover,  #add_prioritization tr:hover{background-color: #E5E5E5;}
+
+#risk th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #E5E5E5;
+  color: black;
+}
+    /* visited link */
+    a:visited {
+      color: black;
+    }
+    
+    /* mouse over link */
+    a:hover {
+      color: blue;
+    }
+    
+    /* selected link */
+    a:active {
+      color: gray;
+    }
+
+</style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+        <div class="container">
+            <div class="row">
+                <div class="col md-12">
+                    
+                        <h2>Risk <b>Prioritization </b>  
+                          <button onclick="goBack()" id="btn_cancel" class="btn btn-danger " >Cancel</button>
+                          <script>
+                            function goBack() {
+                            window.history.back();
+                            }
+                          </script>
+                            <!--<button  id="btn_add" class="btn btn-success "
+                            data-toggle="modal" data-target="#mymodal">Add</button> -->
+                        </h2>
+             
+             
+                            <table id="risk" class="table table-light" >
+             
+                                <tr>
+             
+                                    <th >Low</th>
+                                    <th >Medium</th>
+                                    <th >High</th>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td style="background-color: #F8D82F;font-size:20px"><span id="num4"></span></td>
+                                    <td style="background-color: #F89C2F;font-size:20px"><span id="num7"></span></td>
+                                    <td style="background-color: #f45d5d;font-size:20px"><span id="num9"></span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td style="background-color: #09BB46;font-size:20px"><span id="num3"></span></td>
+                                    <td style="background-color: #F8D82F;font-size:20px"><span id="num6"></span></td>
+                                    <td style="background-color: #F89C2F;font-size:20px"><span id="num8"></span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td style="background-color: #09BB46;font-size:20px"><span id="num1"></span></td>
+                                    <td style="background-color: #09BB46;font-size:20px"><span id="num2"></span></td>
+                                    <td style="background-color: #F8D82F;font-size:20px"><span id="num5"></span></td>
+                                    
+                                </tr>
+                                
+                        
+          
+             </div>
+             </div>
+             </div>
+            </table>
+          
+ 
+ 
+<div id="mymodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+       <div class="modal-content">
+        <div class="modal-header">
+        
+          <h4 class="modal-title">Add Prioritization</h4>
+        </div>
+          <div class="modal-body">
+  
+            <table id="add_prioritization" class="table table-light">
+             
+                <tr>
+
+                    <th>Title</th>
+                    
+                </tr>
+
+                <tr>
+                    <td><a href="#">Lose of Customer Data</a> </td>
+                </tr>
+
+                <tr>
+                    <td><a href="#">Customer Lose Due Covid</a></td>
+                </tr>
+
+                <tr>
+                   <td><a href="#">Lorem Ipsum</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#">Lorem Ipsum</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#">Lorem Ipsum</a></td>
+                </tr>
+
+                
+                  
+  
+                </div>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button id="btn_submit" class="btn btn-primary" type="submit">Add</button>
+
+  
+       </div>
+  
+  
+    </div>
+  
+  
+ </div>
+  
+ <script>
+        riskName=[];
+        riskRating=[];
+        count=0;
+        k=0;
+        let num1=document.getElementById('num1');
+        let num2=document.getElementById('num2');
+        let num3=document.getElementById('num3');
+        let num4=document.getElementById('num4');
+        let num5=document.getElementById('num5');
+        let num6=document.getElementById('num6');
+        let num7=document.getElementById('num7');
+        let num8=document.getElementById('num8');
+        let num9=document.getElementById('num9');
+
+
+        fetch('http://localhost:5000/risk_prioritization/data')
+          .then(function(resp){
+            return resp.json();
+          })
+          .then(function(risk){
+           
+            for( let i=0;i<risk.length;i=i+2){
+              riskName[i]=risk[i];
+            }
+            for(let i=1;i<risk.length;i=i+2)
+              riskRating[i]=risk[i];
+            
+            for(let i=0;i<riskRating.length;i++){
+              k=i;
+              if(riskRating[i]=="1"){
+                num1.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="2"){
+                num2.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="3"){
+                num3.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="4"){
+                num4.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="5"){
+                num5.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="6"){
+                num6.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="7"){
+                num7.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="8"){
+                num8.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="9"){
+                num9.innerHTML =riskName[k=k-1]
+              }         
+            }
+          });
+            
+
+        
+ </script>
+       
+ {% endblock content %}
+  
+ 
+                   
+                   

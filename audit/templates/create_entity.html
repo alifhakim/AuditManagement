@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+
+    #btn_cancel{
+    position: relative;
+    left: 500px;
+    border-radius: 50px;
+    width: 13%;
+  }
+ 
+</style>
+<div class="container" id="nav">
+    <h3> Entity Management / Auditable Entity 
+
+
+    <button onclick="goBack()" id="btn_cancel" class="btn btn-danger " >Cancel</button>
+      <script>
+        function goBack() {
+        window.history.back();
+        }
+      </script>
+      </h3> 
+      
+      <br><br>
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{legend}}</legend>
+            <div class="form-group">
+                {{ form.label.label(class="form-control-label") }}
+                {% if form.label.errors %}
+                    {{ form.label(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.label.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.label(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.description.label(class="form-control-label") }}
+                {% if form.description.errors %}
+                    {{ form.description(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.description(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.entitytype.label(class="form-control-label") }}
+                {% if form.entitytype.errors %}
+                    {{ form.entitytype(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.entitytype.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.entitytype(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div class="radio">
+                {{ form.auditable.label(class="form-control-label") }}
+                {{ form.auditable(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.status.label(class="form-control-label") }}
+                {% if form.status.errors %}
+                    {{ form.status(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.status.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.status(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.shareScope.label(class="form-control-label") }}
+                {% if form.shareScope.errors %}
+                    {{ form.shareScope(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.shareScope.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.shareScope(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.organization.label(class="form-control-label") }}
+                {% if form.organization.errors %}
+                    {{ form.organization(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.organization.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.organization(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

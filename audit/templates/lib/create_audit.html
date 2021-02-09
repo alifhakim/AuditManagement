@@ -1,0 +1,219 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+<style>
+
+#btn_cancel, #btn_save{
+  position: relative;
+  left: 590px;
+  border-radius: 50px;
+  width: 13%;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #ECECEC;;
+border-radius: 30px;
+color: black;
+}
+    
+li {
+float: left;
+}
+    
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+    
+li a:hover {
+background-color: #DADADA;
+border-radius: 30px;
+}
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+#form,#nav{
+background-color: white;
+}
+
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+
+    </style>
+
+    </head>
+    <body>
+    
+        
+    <div class="container" id="nav">
+    <h3> Audit Program / Audit Project
+
+
+    <button onclick="goBack()" id="btn_cancel" class="btn btn-danger " >Cancel</button>
+      <script>
+        function goBack() {
+        window.history.back();
+        }
+      </script>
+      </h3> 
+       
+  
+    <ul>
+      <li><a href={{ url_for('create_audit') }}>Internal Control Type</a></li>
+      <li><a href=#>General Information</a></li>
+      <li><a href=#>Evidence</a></li>
+    </ul>
+</div>
+
+
+    <div class="content-section">
+      <form method="POST" action="">
+          {{ form.hidden_tag() }}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">{{legend}}</legend>
+              <div class="form-group">
+                  {{ form.auditReportTitle.label(class="form-control-label") }}
+                  {% if form.auditReportTitle.errors %}
+                      {{ form.auditReportTitle(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.auditReportTitle.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.auditReportTitle(class="form-control form-control-lg") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                  {{ form.auditOwner.label(class="form-control-label") }}
+                  {% if form.auditOwner.errors %}
+                      {{ form.auditOwner(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.auditOwner.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.auditOwner(class="form-control form-control-lg") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.startDate.label(class="form-control-label") }}
+                {% if form.startDate.errors %}
+                    {{ form.startDate(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.startDate.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.startDate(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.scope.label(class="form-control-label") }}
+                {% if form.scope.errors %}
+                    {{ form.scope(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.scope.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.scope(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.objective.label(class="form-control-label") }}
+                {% if form.objective.errors %}
+                    {{ form.objective(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.objective.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.objective(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.methodology.label(class="form-control-label") }}
+                {% if form.methodology.errors %}
+                    {{ form.methodology(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.methodology.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.methodology(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                  {{ form.evidence.label(class="form-control-label") }}
+                  {% if form.evidence.errors %}
+                      {{ form.evidence(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.evidence.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.evidence(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.evidenceOwner.label(class="form-control-label") }}
+                  {% if form.evidenceOwner.errors %}
+                      {{ form.evidenceOwner(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.evidenceOwner.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.evidenceOwner(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                
+              </fieldset>
+              <div class="form-group">
+                  {{ form.submit(class="btn btn-outline-info") }}
+              </div>
+          </form>
+              </div>
+              
+
+    </body>
+            {% endblock content %}
+
+
+            

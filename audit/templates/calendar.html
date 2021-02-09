@@ -1,0 +1,454 @@
+{% extends 'index.html'%}
+{% block content %}
+
+<style>
+
+.container{
+    background:#ffffff;
+}
+.strike {
+  text-decoration: line-through;
+}
+#cal{
+    width: 80%;
+    height: 60%;
+}
+#btn_cancel{
+    position: relative;
+    margin: 20px 0px;
+    cursor: pointer;
+    background-color: white;
+    color:  #3498DB;
+}
+
+#sortBtn, #btn_create{
+    background-color: #3498DB;
+    color: white;
+    width: auto;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+}  
+
+#sortBtn:hover, #btn_create:hover{
+    cursor: pointer;
+    background-color: #3498dbd7;
+    color: white;
+}
+#categoryFilter{
+    background-color: #3498DB;
+    color: white;
+    width: 200px;
+    height: 25px;
+    border-radius: 8px;
+    border: none;
+}
+#todoTable{
+    width: 70%; font-size: 14px; border-collapse: collapse
+}
+ 
+td{
+  border: 1px solid black;
+  padding: 5px;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <div class="col md-12">
+                
+        <div class="text-left">
+            <i class="fas fa-arrow-circle-left fa-2x" title="Back" onclick="goBack()" id="btn_cancel"></i>
+            <script>
+              function goBack() {
+              window.history.back();
+              }
+            </script>
+        
+        <p><button id="sortBtn">Sort</button>
+            <button id="btn_create" data-toggle="modal" data-target="#modalSubscriptionForm">Create New Event</button>
+        </p>
+        </div>
+        
+        <ul></ul>
+        <table id="todoTable" class="table table-dark table-striped">
+          <tr>
+            <td></td>
+            <td>Date</td>
+            <td>Time</td>
+            <td>To-do</td>
+            <td>
+              <select id="categoryFilter">
+              </select>
+            </td>
+            <td></td>
+          </tr>
+        </table>
+        
+<br>
+        <div id='calendar'></div>
+    </div>
+</div>
+</div>
+
+ <!--modal-->
+
+ <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="far fa-edit"></i>
+          <label data-error="wrong" data-success="right" for="form4">To do</label>
+          <input type="text" id="form4" class="form-control validate" placeholder="Enter new to-do">
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-list"></i>
+          <label data-error="wrong" data-success="right" for="categoryList">Category List</label>
+          <input type="text" id="form3" class="form-control validate" placeholder="Enter category" list="categoryList">
+          <datalist id="categoryList">
+            <option value="Personal"></option>
+            <option value="Work"></option>
+          </datalist>
+        </div>
+
+        <div class="md-form mb-3">
+            <label data-error="wrong" data-success="right" for="dateInput">Date</label>
+            <input type="date" id="dateInput" class="form-control validate">
+        </div>
+
+        <div class="md-form mb-2">
+            <label data-error="wrong" data-success="right" for="timeInput">Time</label>
+            <input type="time" id="timeInput" class="form-control validate">
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-indigo" id="addBtn" title="Add"> Add <i class="fas fa-paper-plane-o ml-1"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+  
+todoMain();
+
+function todoMain() {
+  const DEFAULT_OPTION = "Choose category";
+
+  let inputElem,
+    inputElem2,
+    dateInput,
+    timeInput,
+    addButton,
+    sortButton,
+    selectElem,
+    todoList = [],
+    calendar;
+
+  getElements();
+  addListeners();
+  initCalendar();
+  load();
+  renderRows();
+  updateSelectOptions();
+
+  function getElements() {
+    inputElem = document.getElementsByTagName("input")[0];
+    inputElem2 = document.getElementsByTagName("input")[1];
+    dateInput = document.getElementById("dateInput");
+    timeInput = document.getElementById("timeInput");
+    addButton = document.getElementById("addBtn");
+    sortButton = document.getElementById("sortBtn");
+    selectElem = document.getElementById("categoryFilter");
+  }
+
+  function addListeners() {
+    addButton.addEventListener("click", addEntry, false);
+    sortButton.addEventListener("click", sortEntry, false);
+    selectElem.addEventListener("change", filterEntries, false);
+  }
+
+  function addEntry(event) {
+
+    let inputValue = inputElem.value;
+    inputElem.value = "";
+
+    let inputValue2 = inputElem2.value;
+    inputElem2.value = "";
+
+    let dateValue = dateInput.value;
+    dateInput.value = "";
+
+    let timeValue = timeInput.value;
+    timeInput.value = "";
+
+    let obj = {
+      id: _uuid(),
+      todo: inputValue,
+      category: inputValue2,
+      date: dateValue,
+      time: timeValue,
+      done: false,
+    };
+
+    rendowRow(obj);
+
+    todoList.push(obj);
+
+    save();
+
+    updateSelectOptions();
+
+  }
+
+  function filterEntries() {
+    let selection = selectElem.value;
+
+    // Empty the table, keeping the first row
+    let trElems = document.getElementsByTagName("tr");
+    for(let i = trElems.length - 1; i > 0; i--){
+      trElems[i].remove();
+    }
+
+    calendar.getEvents().forEach(event=>event.remove());
+
+    if (selection == DEFAULT_OPTION) {
+      todoList.forEach( obj => rendowRow(obj) );
+    } else {
+      todoList.forEach( obj => {
+        if( obj.category == selection ){
+          rendowRow(obj);
+        }
+      });
+    }
+  }
+
+  function updateSelectOptions() {
+    let options = [];
+
+    todoList.forEach((obj)=>{
+      options.push(obj.category);
+    });
+
+    let optionsSet = new Set(options);
+
+    // empty the select options
+    selectElem.innerHTML = "";
+
+    let newOptionElem = document.createElement('option');
+    newOptionElem.value = DEFAULT_OPTION;
+    newOptionElem.innerText = DEFAULT_OPTION;
+    selectElem.appendChild(newOptionElem);
+
+    for (let option of optionsSet) {
+      let newOptionElem = document.createElement('option');
+      newOptionElem.value = option;
+      newOptionElem.innerText = option;
+      selectElem.appendChild(newOptionElem);
+    }
+  }
+
+  function save() {
+    let stringified = JSON.stringify(todoList);
+    localStorage.setItem("todoList", stringified);
+  }
+
+  function load() {
+    let retrieved = localStorage.getItem("todoList");
+    todoList = JSON.parse(retrieved);
+    //console.log(typeof todoList)
+    if (todoList == null)
+      todoList = [];
+  }
+
+  function renderRows() {
+    todoList.forEach(todoObj => {
+
+
+      // let todoEntry = todoObj["todo"];
+      // let key = "category";
+      // let todoCategory = todoObj[key];
+      rendowRow(todoObj);
+    })
+    
+  }
+
+  function rendowRow({ todo: inputValue, category: inputValue2, id, date, time, done }) {
+    // add a new row
+
+    let table = document.getElementById("todoTable");
+
+    let trElem = document.createElement("tr");
+    table.appendChild(trElem);
+
+    // checkbox cell
+    let checkboxElem = document.createElement("input");
+    checkboxElem.type = "checkbox";
+    checkboxElem.addEventListener("click", checkboxClickCallback, false);
+    checkboxElem.dataset.id = id;
+    let tdElem1 = document.createElement("td");
+    tdElem1.appendChild(checkboxElem);
+    trElem.appendChild(tdElem1);
+
+    // date cell
+    let dateElem = document.createElement("td");
+    let dateObj = new Date(date);
+    let formattedDate = dateObj.toLocaleString("en-GB", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+
+    dateElem.innerText = formattedDate;
+    trElem.appendChild(dateElem);
+
+    // time cell
+    let timeElem = document.createElement("td");
+    timeElem.innerText = time;
+    trElem.appendChild(timeElem);
+
+    // to-do cell
+    let tdElem2 = document.createElement("td");
+    tdElem2.innerText = inputValue;
+    trElem.appendChild(tdElem2);
+
+    // category cell
+    let tdElem3 = document.createElement("td");
+    tdElem3.innerText = inputValue2;
+    tdElem3.className = "categoryCell";
+    trElem.appendChild(tdElem3);
+
+    // delete cell
+    let spanElem = document.createElement("span");
+    spanElem.innerText = "delete";
+    spanElem.className = "material-icons";
+    spanElem.addEventListener("click", deleteItem, false);
+    spanElem.dataset.id = id;
+    let tdElem4 = document.createElement("td");
+    tdElem4.appendChild(spanElem);
+    trElem.appendChild(tdElem4);
+
+    checkboxElem.type = "checkbox";
+    checkboxElem.checked = done;
+    if (done) {
+      trElem.classList.add("strike");
+    } else {
+      trElem.classList.remove("strike");
+    }
+
+    addEvent({
+        id: id,
+        title: inputValue,
+        start: date,
+
+    });
+
+    function deleteItem() {
+      trElem.remove();
+      updateSelectOptions();
+
+      for (let i = 0; i < todoList.length; i++) {
+        if (todoList[i].id == this.dataset.id)
+          todoList.splice(i, 1);
+      }
+      save();
+
+      //remove from calendar
+      calendar.getEventById( this.dataset.id ).remove();
+    }
+
+    function checkboxClickCallback() {
+      trElem.classList.toggle("strike");
+      for (let i = 0; i < todoList.length; i++) {
+        if (todoList[i].id == this.dataset.id)
+          todoList[i]["done"] = this.checked;
+      }
+      save();
+    }
+  }
+
+  function _uuid() {
+    var d = Date.now();
+    if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+      d += performance.now(); //use high-precision timer if available
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (d + Math.random() * 16) % 16 | 0;
+      d = Math.floor(d / 16);
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+
+  function sortEntry() {
+    todoList.sort((a, b) => {
+      let aDate = Date.parse(a.date);
+      let bDate = Date.parse(b.date);
+      return aDate - bDate;
+    });
+
+    save();
+
+    let trElems = document.getElementsByTagName("tr");
+    for(let i = trElems.length - 1; i > 0; i--){
+      trElems[i].remove();
+    }
+
+    renderRows();
+  }
+  function initCalendar(){
+    
+    var calendarEl = document.getElementById('calendar');
+
+    calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      initialDate: '2020-12-07',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: [],
+    });
+
+    calendar.render();
+  }
+
+  function addEvent(event){
+    calendar.addEvent( event );
+  }
+
+}
+  </script>
+</body>
+</html>
+
+{% endblock content %}

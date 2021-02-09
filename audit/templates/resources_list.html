@@ -1,0 +1,162 @@
+{% extends 'layout.html'%}
+{% block content %}
+ 
+<style>
+table
+{
+    table-layout: fixed;
+
+}
+* {
+  font-family: sans-serif; /* Change your font family */
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.8em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+  
+table td a.edit{
+  color:#f0ad4e;
+  font-size: 16px;
+ }
+
+table td a.delete{
+  color:#d9534f;
+  font-size: 16px;
+}
+</style>
+    
+    </head>
+    <body>
+          
+        <div class="container">
+            <div class="row">
+
+                    
+                        <h2>Asset Identification / <b> List of Assets 
+                          <a href="{{ url_for('create_resources') }}"><button style ="position: relative;left:445px;color: white;" class="btn btn-warning"
+                            data-toggle="modal" data-target="#mymodal">Create New Asset</button></a></b>     
+                        </h2>
+                       <br></br>
+                       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for asset name.." title="Type in a name">
+                       <table id="myTable" class="content-table">
+                        <tr class="attribute">
+                                    <thead>
+                                    <th>Asset Name</th>
+                                    <th>Asset Type</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Asset Owner</th>
+                                    <th>Status</th>
+                                    <th>Available for Audit</th>
+                                    <th>Confidentiality</th>
+                                    <th>Evidence</th>
+                                    <th>Evidence Description</th>
+                                    <th>Action</th>
+                                 </tr>
+                                </thead>
+                                 {% for row in resource %}
+                                <tbody>
+                                <tr>
+         
+                                    <td>{{row.asset}}</td>
+                                    <td>{{row.resourceType}}</td>
+                                    <td>{{row.category}}</td>
+                                    <td>{{row.assetOwner}}</td>
+                                    <td>{{row.description}}</td>
+                                    <td>{{row.status}}</td>
+                                    <td>{{row.availability}}</td>
+                                    <td>{{row.confidentiality}}</td>
+                                    <td>{{row.evidence}}</td>
+                                    <td>{{row.filesDescription}}</td>
+                                  
+                                   
+                                <td><a href="{{ url_for('update_resources', resource_id=row.id) }}" class="edit" title="Edit"><i class="fas fa-edit"></i></a></button>
+                                    <a href="{{ url_for('delete_resource',resource_id=row.id) }}" class="delete" title="Delete" method="POST" onclick="return confirm('Are you sure for delete?')"><i class="far fa-trash-alt"></i></a></button>
+                                </td>
+                                   
+                                </tr>
+
+                                  {%endfor%}
+       
+             </div>
+             </div>
+            </tbody>
+            </table>
+            <br>
+           
+          </body>
+  
+          <script>
+            function myFunction() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }       
+              }
+            }
+            </script>
+ {% endblock content %}
+                   

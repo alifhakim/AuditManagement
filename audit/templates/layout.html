@@ -1,0 +1,369 @@
+
+<style>
+    *
+    {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   text-decoration: none;
+   box-sizing: border-box;
+   font-family: "Roboto", sans-serif;
+ }
+ 
+ body{
+   background: #F6F6F6;
+ }
+ 
+ .wrapper .header{
+   z-index: 1;
+   background: #fff;
+   position: fixed;
+   width: calc(100% - 0%);
+   height: 70px;
+   display: flex;
+   top: 0;
+ }
+ 
+ .wrapper .header .header-menu{
+   width: calc(100% - 0%);
+   height: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 20px;
+ }
+
+ .wrapper .header .header-menu .title {
+   color: #fff;
+   font-size: 25px;
+   text-transform: uppercase;
+   font-weight: 900;
+   margin-left: 30px;
+ }
+ 
+ .wrapper .header .header-menu .title span{
+   color: #4CCEE8;
+ }
+ 
+ .wrapper .header .header-menu .sidebar-btn{
+   background-color: #3498DB;
+   color: #fff;
+   position: absolute;
+   margin-left: 3px;
+   font-size: 22px;
+   font-weight: 900;
+   cursor: pointer;
+   transition: 0.3s;
+   transition-property: color;
+ }
+ 
+ .wrapper .header .header-menu .sidebar-btn:hover{
+   background-color:#4ccEE8;
+   color: #fff;
+ }
+ 
+ .wrapper .header .header-menu ul{
+   display: flex;
+ }
+ 
+ .wrapper .header .header-menu ul li a{
+   background: #fff;
+   color: #3498DB;
+   margin: 0 18px;
+   font-size: 20px;
+   width: 34px;
+   height: 34px;
+   line-height: 35px;
+   text-align: center;
+   transition: 0.3s;
+   transition-property: background, color;
+ }
+ 
+ .wrapper .header .header-menu ul li a:hover{
+   color: #4CCEE8;
+ }
+ 
+ .wrapper .sidebar{
+   z-index: 1;
+   background:#151616;
+   position: fixed;
+   top: 70px;
+   width: 250px;
+   height: calc(100% - 9%);
+   transition: 0.3s;
+   transition-property: width;
+   overflow-y: auto;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu{
+   overflow: hidden;
+ }
+ 
+ 
+ .wrapper .sidebar .sidebar-menu .item{
+   width: 250px;
+   overflow: hidden;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .menu-btn{
+   display: block;
+   color: rgb(204, 204, 204);
+   position: relative;
+   padding: 25px 20px;
+   transition: 0.3s;
+   transition-property: color;
+ }
+ /*dropdown sidebar*/
+ .wrapper .sidebar .sidebar-menu .item .menu-btn:hover{
+   display: block;
+   background-color:#1c334e;
+   color: #ffffff;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .menu-btn i{
+   margin-right: 20px;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .menu-btn .drop-down{
+   float: right;
+   font-size: 12px;
+   margin-top: 3px;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu{
+   background: #eee;
+   overflow: hidden;
+   max-height: 0;
+   transition: 0.3s;
+   transition-property: background, max-height;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu a{
+   display: block;
+   position: relative;
+   color: #1c334e;
+   white-space: nowrap;
+   font-size: 15px;
+   padding: 20px;
+   transition: 0.3s;
+   transition-property: background;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu a:hover{
+   background: #1c334e;
+   color: #fff;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu a:not(last-child){
+   border-bottom: 1px solid #ddd;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu i{
+   padding-right: 20px;
+   font-size: 10px;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item:target .sub-menu{
+   max-height: 500px;
+ }
+ 
+ /* background image*/ 
+ .wrapper .main-container{
+   width: (100% - 250px);
+   margin-top: 70px;
+   margin-left: 250px;
+   padding: 15px;
+   background: #ddd;
+   background-size: cover;
+   height: 150vh;
+   transition: 0.3s;
+   
+ }
+ 
+ .wrapper.collapse .sidebar{
+   width: 70px;
+ }
+ 
+ .wrapper.collapse .sidebar a span{
+   display: none;
+ }
+ 
+ .wrapper.collapse .sidebar .sidebar-menu .item .menu-btn{
+   font-size: 23px;
+ }
+ 
+ .wrapper.collapse .sidebar .sidebar-menu .item .sub-menu i{
+   font-size: 18px;
+   padding-left: 3px;
+ }
+ 
+ .wrapper.collapse .main-container{
+   width: calc(100% - 70px);
+   margin-left: 70px;
+ }
+ 
+ .wrapper .main-container .card{
+   background: #fff;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+   padding: 15px;
+   margin-bottom: 10px;
+   height: fit-content;
+ }
+ 
+ /*right side dropdown*/
+ 
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: #eee;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+ }
+ 
+ .dropdown-content a {
+   color: #1c334e;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+ }
+ 
+ .dropdown-content a:hover {background-color:#1c334e; color: #fff;}
+ 
+ .dropdown:hover .dropdown-content {display: block;}
+ 
+ /* scroll bar */
+ /* width */
+ ::-webkit-scrollbar {
+   width: 10px;
+ }
+ 
+ /* Track */
+ ::-webkit-scrollbar-track {
+   background: #f1f1f1; 
+ }
+  
+ /* Handle */
+ ::-webkit-scrollbar-thumb {
+   background: rgb(201, 200, 200); 
+ }
+ 
+ /* Handle on hover */
+ ::-webkit-scrollbar-thumb:hover {
+   background: #888; 
+ }
+ 
+ </style>
+ 
+ <!DOCTYPE html>
+ <html lang="en" dir="ltr">
+     <head>
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <title>AuditBench : Planning </title>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+         
+     </head>
+     <body>
+       <!--wrapper start-->
+         <div class="wrapper">
+             <!--header menu start-->
+             <div class="header">
+                 <div class="header-menu">
+                     <div class="title">
+                        <a href="{{ url_for('dashboard') }}"><img src="/static/logo.png" title = "AuditBench Home" width="150px" height="150px">AuditBench</a>
+                     </div>
+                     
+                     <ul>  
+                        <li><a href="{{ url_for('setting') }}" class="profile" title="Profile"><i class="fas fa-user"></i></a>{{current_user.username}}</li>
+                      
+                       
+                           <!--<div class="dropdown" id="item">
+                             <div class="dropbtn">
+                             <li><a href="#"><i class="fas fa-chevron-down"></i></a></li>
+ 
+                             <div class="dropdown-content" >
+                               <a href="{{ url_for('setting') }}" title="Profile"><i class="fas fa-user"></i> {{current_user.username}}</a>
+                               <a href="{{ url_for('logout') }}" title="Sign out"><i class="fas fa-sign-out-alt"></i> Sign out</a>
+                             </div>
+                           </div>
+                           </div>--> 
+                     </ul>
+                 </div>
+             </div>
+            <!--header menu end-->
+            <!--sidebar start-->
+           <div class="sidebar">
+            <div class="sidebar-menu">
+                
+                <li class="item">
+                    <a href="{{ url_for('dashboard') }}" class="menu-btn" title="Home">
+                        <i class="fas fa-home"></i><span>Home</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="{{ url_for('document_list') }}" class="menu-btn" title="Documents">
+                       <i class="fas fa-file"></i><span>Documents</span>
+                    </a>
+                </li>
+                <li class="item" id="program">
+                  <a href="#program" class="menu-btn" title="Audit Program">
+                    <i class="fas fa-laptop-code"></i><span>Audit Program<i class="fas fa-chevron-down drop-down" ></i></span>
+                  </a>
+                  <div class="sub-menu">
+                      <a href="{{ url_for('audit_list') }}" title="Audit List"><span>Audit List</span></a>
+                  </div>
+              </li>
+                <li class="item" id="universe">
+                  <a href="#universe" class="menu-btn" title="Audit Universe">
+                      <i class="fas fa-universal-access"></i><span>Audit Universe <i class="fas fa-chevron-down drop-down" ></i></span>
+                  </a>
+                  <div class="sub-menu">
+                   <a href="{{ url_for('entity_list') }}" title="Entity Management">Entity Management</a>
+                   <a href="{{ url_for('risk_list') }}" title="Risk Assessment Detail">Risk Assessment Detail</a>
+                   <a href="{{ url_for('risk_prioritization') }}" title="Risk Prioritization">Risk Prioritization</a>
+                  </div>
+              </li>
+                <li class="item" id="resources">
+                  <a href="#resources" class="menu-btn" title="Audit Resources">
+                    <i class="fas fa-box-open"></i><span>Audit Resources <i class="fas fa-chevron-down drop-down" ></i></span>
+                  </a>
+                  <div class="sub-menu">
+                      <a href="{{ url_for('resources_list') }}" title="Asset Identification"><span>Asset Identification</span></a>
+                  </div>
+              </li>
+                <li class="item" id="calendar">
+                    <a href="{{ url_for('calendar')}}" class="menu-btn" title="Calendar Events">
+                        <i class="far fa-calendar-alt"></i><span>Calendar Events</span>
+                    </a>
+                </li>
+                <li class="item" id="settings">
+                    <a href="#settings" class="menu-btn" title="Settings">
+                        <i class="fas fa-cog"></i><span>Settings <i class="fas fa-chevron-down drop-down" ></i></span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="{{ url_for('setting') }}" title="Profile"><i class="fas fa-user"></i><span>Profile</span></a>
+                        <a href="{{ url_for('logout') }}" title="Sign out"><i class="fas fa-sign-out-alt"></i><span>Sign out</span></a>
+                    </div>
+                </li>
+            </div>
+        </div>
+        <!--sidebar end-->
+             <!--main container start-->
+           
+               <div class="main-container">
+                 <div class="card">
+                   
+                   {% block content %}
+                   {% endblock content %}
+                 </div> 
+             </div>
+             <!--main container end-->
+         </div>
+         <!--wrapper end-->
+       
+     </body>
+ </html>
+                            

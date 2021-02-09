@@ -1,0 +1,181 @@
+
+{% extends 'layout.html'%}
+{% block content %}
+
+<style>
+
+#btn_cancel{
+  position: relative;
+  left: 650px;
+  border-radius: 50px;
+  width: 13%;
+}
+
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+
+    </style>
+
+
+    
+    </head>
+    <body>
+    
+    
+    <div class="content-section">
+      <h3>{{title}} Items (Risk Management)
+        <button onclick="goBack()" id="btn_cancel" class="btn btn-danger " >Cancel</button>
+      <script>
+        function goBack() {
+        window.history.back();
+        }
+      </script>
+      </h3>
+      
+   
+      <form method="POST" action="" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">General Information</legend>
+              <div class="form-group">
+                  {{ form.riskName.label(class="form-control-label") }}
+                  {% if form.riskName.errors %}
+                      {{ form.riskName(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.riskName.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.riskName(class="form-control form-control-lg") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                  {{ form.year.label(class="form-control-label") }}
+                  {% if form.year.errors %}
+                      {{ form.year(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.year.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.year(class="form-control form-control-lg") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.status.label(class="form-control-label") }}
+                {% if form.status.errors %}
+                    {{ form.status(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.status.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.status(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+                <div class="form-group">
+                  {{ form.reviewer.label(class="form-control-label") }}
+                  {% if form.reviewer.errors %}
+                      {{ form.reviewer(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.reviewer.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.reviewer(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.reviewStatus.label(class="form-control-label") }}
+                  {% if form.reviewStatus.errors %}
+                      {{ form.reviewStatus(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.reviewStatus.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.reviewStatus(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  <legend class="border-bottom mb-4">Overall Risk</legend>
+                  {{ form.inherentRisk.label(class="form-control-label") }}
+                  {% if form.inherentRisk.errors %}
+                      {{ form.inherentRisk(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.inherentRisk.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.inherentRisk(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.controlRisk.label(class="form-control-label") }}
+                  {% if form.controlRisk.errors %}
+                      {{ form.controlRisk(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.controlRisk.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.controlRisk (class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.riskRating.label(class="form-control-label") }}
+                  {{ form.riskRating(class="form-control form-control-lg") }}
+              </div>
+                <div class="form-group">
+                  <legend class="border-bottom mb-4">Supporting Evidence</legend>
+                  {{ form.filesDescription.label(class="form-control-label") }}
+                  {% if form.filesDescription.errors %}
+                    {{ form.filesDescription(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.filesDescription.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.filesDescription(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                {{ form.files.label() }}
+                {{ form.files(class="form-control-file") }}
+                {% if form.files.errors %}
+                    {% for error in form.files.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+              </fieldset>
+              <div class="form-group">
+                  {{ form.submit(class="btn btn-outline-info") }}
+              </div>
+          </form>
+              </div>
+
+    </body>
+            {% endblock content %}
+
+
+            

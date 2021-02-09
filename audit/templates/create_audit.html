@@ -1,0 +1,232 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+<style>
+
+#btn_cancel{
+  position: relative;
+  left: 650px;
+  border-radius: 50px;
+  width: 13%;
+}
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+    </style>
+    </head>
+    <body>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    
+    <div class="content-section" id="nav">
+        <h3> Audit Program / {{title}}
+            <button onclick="goBack()" id="btn_cancel" class="btn btn-danger " >Cancel</button>
+              <script>
+                function goBack() {
+                window.history.back();
+                }
+              </script>
+              </h3> 
+            
+            <br></br>
+
+            <div class="content-section">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">{{legend}}</legend>
+                        <div class="form-group">
+                            {{ form.auditReportTitle.label(class="form-control-label") }}
+                            {% if form.auditReportTitle.errors %}
+                                {{ form.auditReportTitle(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.auditReportTitle.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.auditReportTitle(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.auditOwner.label(class="form-control-label") }}
+                            {% if form.auditOwner.errors %}
+                                {{ form.auditOwner(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.auditOwner.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.auditOwner(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                          <div class='input-group date' id='datepicker'>
+                        {{form.startDate.label(class="form-control-label")}}
+                        {{form.startDate(class='startDate')}}
+                              <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
+                      </div>
+                        <div class="form-group">
+                          {{ form.objective.label(class="form-control-label") }}
+                          {% if form.objective.errors %}
+                              {{ form.objective(class="form-control form-control-lg is-invalid") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.objective.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.objective(class="form-control form-control-lg") }}
+                          {% endif %}
+                        </div>
+                        <div class="form-group">
+                          {{ form.methodology.label(class="form-control-label") }}
+                          {% if form.methodology.errors %}
+                              {{ form.methodology(class="form-control form-control-lg is-invalid") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.methodology.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.methodology(class="form-control form-control-lg") }}
+                          {% endif %}
+                        </div>
+                        <div class="form-group">
+                          {{ form.scope.label(class="form-control-label") }}
+                          {% if form.scope.errors %}
+                              {{ form.scope(class="form-control form-control-lg is-invalid") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.scope.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.scope(class="form-control form-control-lg", value=" ") }}
+                          {% endif %}
+                        </div>
+                        <div class="form-group">
+                          {{ form.documentType.label(class="form-control-label") }}
+                          {% if form.documentType.errors %}
+                              {{ form.documentType(class="form-control form-control-lg is-invalid") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.documentType.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.documentType(class="form-control form-control-lg", value=" ") }}
+                          {% endif %}
+                        </div>
+                        <div class="form-group">
+                          {{ form.description.label(class="form-control-label") }}
+                          {% if form.description.errors %}
+                              {{ form.description(class="form-control form-control-lg is-invalid") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.description.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.description(class="form-control form-control-lg", value="") }}
+                          {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.evidence.label(class="form-control-label") }}
+                            {% if form.evidence.errors %}
+                                {{ form.evidence(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.evidence.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.evidence(class="form-control form-control-lg") }}
+                            {% endif %}
+                          </div>
+                          <div class="form-group">
+                            {{ form.evidenceOwner.label(class="form-control-label") }}
+                            {% if form.evidenceOwner.errors %}
+                                {{ form.evidenceOwner(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.evidenceOwner.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.evidenceOwner(class="form-control form-control-lg") }}
+                            {% endif %}
+                          </div>
+                        </fieldset>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+                    </form>
+                        </div>
+                        
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+              <script >
+                 $(function () {
+	        $('#datepicker').datepicker({
+	          format: "yyyy-mm-dd",
+	          autoclose: true,
+	          todayHighlight: true,
+		        showOtherMonths: true,
+		        selectOtherMonths: true,
+		        autoclose: true,
+		        changeMonth: true,
+		        changeYear: true,
+		        orientation: "button"
+	        });
+      });
+              </script>
+              <script>
+                method_select= document.getElementById('methodology');
+                let scope=document.getElementById('scope');
+                let documentType=document.getElementById('documentType');
+                let description=document.getElementById('description');
+                
+                method_select.onchange =function(){
+                 method=method_select.value;
+                 console.log(method)
+                 fetch('http://localhost:5000/audit_list/' + method).then(function(response){
+                    response.json().then(function(data) {  
+                        auditscope=''; 
+                        docType='';
+                        desc='';
+                        methods='';
+                        for (audit of data.audits) {
+                            if(method==audit.method){
+                                auditscope=audit.scope;
+                                docType=audit.doctype;
+                                desc=audit.description;
+                            }    
+                        }
+                        scope.value=auditscope;
+                        documentType.value=docType;
+                        description.value=desc;
+                        });
+                    });
+                }
+            </script>
+              </body>
+                      {% endblock content %}
+
+
+            

@@ -1,0 +1,173 @@
+{% extends 'layout.html'%}
+{% block content %}
+
+<style>
+
+#btn_cancel{
+  position: relative;
+  left: 650px;
+  border-radius: 50px;
+  width: 13%;
+}
+
+    </style>
+
+    </head>
+    <body>
+    
+    <div class="content-section">
+      <h3>{{title}}
+        <button onclick="goBack()" id="btn_cancel" class="btn btn-danger " >Cancel</button>
+      <script>
+        function goBack() {
+        window.history.back();
+        }
+      </script>
+      </h3>
+      
+   <br></br>
+      <form method="POST" action="" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">General Information</legend>
+              <div class="form-group">
+                {{ form.asset.label(class="form-control-label") }}
+                {% if form.asset.errors %}
+                    {{ form.asset(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.asset.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.asset(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.resourceType.label(class="form-control-label") }}
+                {% if form.resourceType.errors %}
+                    {{ form.resourceType(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.resourceType.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.resourceType(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+              {{ form.category.label(class="form-control-label") }}
+              {% if form.category.errors %}
+                  {{ form.category(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.category.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.category(class="form-control form-control-lg") }}
+              {% endif %}
+          </div>
+                <div class="form-group">
+                  {{ form.assetOwner.label(class="form-control-label") }}
+                  {% if form.assetOwner.errors %}
+                      {{ form.assetOwner(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.assetOwner.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.assetOwner(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+              <div class="form-group">
+                  {{ form.description.label(class="form-control-label") }}
+                  {% if form.description.errors %}
+                      {{ form.description(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.description.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.description(class="form-control form-control-lg") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.status.label(class="form-control-label") }}
+                {% if form.status.errors %}
+                    {{ form.status(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.status.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.status(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+             
+                <div class="form-group">
+                  <legend class="border-bottom mb-4">Availability</legend>
+                  {{ form.availability.label(class="form-control-label") }}
+                  {% if form.availability.errors %}
+                      {{ form.availability(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.availability.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.availability(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.confidentiality.label(class="form-control-label") }}
+                  {% if form.confidentiality.errors %}
+                      {{ form.confidentiality(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.confidentiality.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.confidentiality(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  <legend class="border-bottom mb-4">Supporting Evidence</legend>
+                  {{ form.filesDescription.label(class="form-control-label") }}
+                  {% if form.filesDescription.errors %}
+                    {{ form.filesDescription(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.filesDescription.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.filesDescription(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                {{ form.evidence.label() }}
+                {{ form.evidence(class="form-control-file") }}
+                {% if form.evidence.errors %}
+                    {% for error in form.evidence.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+              </fieldset>
+              <div class="form-group">
+                  {{ form.submit(class="btn btn-outline-info") }}
+              </div>
+          </form>
+              </div>
+
+    </body>
+            {% endblock content %}
+
+
+            
