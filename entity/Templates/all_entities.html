@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+ 
+{% block body %}
+
+<style>
+
+button {
+  float: right;
+  position: relative;
+}
+
+#btn_submit{
+  position: relative;
+  left: 370px;
+  border-radius: 30px;
+  width: 100px;
+}
+
+#entity td, #entity th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#entity tr{
+  background-color: #ffffff;}
+
+#entity tr:hover {background-color: #E5E5E5;}
+
+#entity th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #E5E5E5;
+  color: black;
+}
+    /* unvisited link */
+    a:link {
+      color: black;
+    }
+    
+    /* mouse over link */
+    a:hover {
+      color: blue;
+    }
+    
+    /* selected link */
+    a:active {
+      color: gray;
+    }
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #ECECEC;;
+border-radius: 30px;
+color: black;
+}
+    
+li {
+float: left;
+}
+    
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+    
+li a:hover {
+background-color: #DADADA;
+border-radius: 30px;
+}
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+#nav{
+background-color: white;
+}
+
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+table {
+  text-align: center;
+}
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+    </style>
+
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
+            <div class="col md-12">
+
+      <h3>List of Entity
+        <button  class="btn btn-success"
+        data-toggle="modal" data-target="#mymodal">Create New Entity</button><br><br>
+      </h3>
+      
+    <ul>
+      <li><a href="#">All Entities /<br> General Information</a></li>
+      <li><a href="#">Communication &<br> Collaboration</a></li>
+      <li><a href="#">Attachment</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Other
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Customer</a>
+          <a class="dropdown-item" href="#">Product</a>
+        </div>
+      </li>
+    </ul>
+    <br><br>
+    </div>
+
+    <table id="entity" class="table table-light">
+             
+      <tr>
+          <th></th>
+          <th>LABEL</th>
+          <th>SCHEMA STATUS</th>
+          <th>IS EXTEND</th>
+          <th>TYPE</th>
+          <th>AUDITABLE </th>
+          <th>OWNER TYPE</th>
+          <th>NAME</th>
+          <th>MODULE</th>
+          <th>SHARE SCOPE</th>
+          <th>ORGANIZATION</th>
+          <th>UPDATE AT</th>
+          <th></th>
+      </tr>
+    
+      <tr>
+          <td><input type="checkbox" value="2" name="mycheckbox" class="checkthis" /></td>
+          <td>Customer User Setting</td>
+          <td>Active</td>
+          <td>Yes</td>
+          <td>System</td>
+          <td>No</td>
+          <td>CustomerUserSetting</td>
+          <td> - </td>
+          <td>CustomerBundle</td>
+          <td>N/A</td>
+          <td>All</td>
+          <td>Oct 20, 2020 <br> 9:15 a.m</td>
+          <td>
+              <a href="#" class="fa fa-eye" data-toggle="modal" data-target="#modalview" ></a>
+          </td>
+      </tr>
+
+      <tr>
+        <td><input type="checkbox" value="2" name="mycheckbox" class="checkthis" /></td>
+        <td>Customer User Role</td>
+        <td>Active</td>
+        <td>Yes</td>
+        <td>System</td>
+        <td>Yes</td>
+        <td>CustomerUserRole</td>
+        <td> - </td>
+        <td>CustomerBundle</td>
+        <td>N/A</td>
+        <td>All</td>
+        <td>Oct 20, 2020 <br> 9:15 a.m</td>
+        <td>
+            <a href="#" class="fa fa-eye" data-toggle="modal" data-target="#modalview" ></a>
+        </td>
+      </tr>
+
+      <tr>
+        <td><input type="checkbox" value="2" name="mycheckbox" class="checkthis" /></td>
+        <td>Customer Visitor</td>
+        <td>Active</td>
+        <td>Yes</td>
+        <td>System</td>
+        <td>No</td>
+        <td>CustomerVisitor</td>
+        <td> - </td>
+        <td>CustomerBundle</td>
+        <td>N/A</td>
+        <td>All</td>
+        <td>Oct 20, 2020 <br> 9:15 a.m</td>
+        <td>
+            <a href="#" class="fa fa-eye" data-toggle="modal" data-target="#modalview" ></a>
+        </td>
+      </tr>
+    </div>
+  </div>
+</div>
+</table>
+
+<input type="submit" value="Delete All Selected" onclick="return confirm('Are you sure to delete all selected files?')" class="btn btn-primary">
+             
+</body>
+            
+{% endblock %}
+
+
+            
