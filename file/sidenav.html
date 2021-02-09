@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+header {
+  background-color: #fff;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+.topnav a {
+float: left;
+color: #3498DB;
+text-align: center;
+padding: 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+.topnav a:hover {
+color:#4CCEE8;
+}
+.topnav-right {
+float: right;
+
+}
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #2D5584;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav .img{
+    left:50px;
+    right: 50px;
+    position: fixed;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #fff;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+    display: block;
+    background-color: #fff;
+    color: #2D5584;
+}
+
+/* Main content */
+.main {
+  margin-left: 250px; /* Same as the width of the sidenav */
+  font-size: 14px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: #ECECEC;
+  color: #000;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #476485;
+  padding-left: 0px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+.btn-logout{
+  height: 40px;
+  width: 190px;
+  position: fixed;
+  background-color :#fff;
+  bottom: 10%;
+  left: 30px;
+  right: 30px;
+  border: none;
+  border-radius: 10px;
+}
+.btn-logout:hover{
+  height: 40px;
+  width: 190px;
+  position: fixed;
+  background-color:#4CCEE8;
+  bottom: 10%;
+  left: 30px;
+  right: 30px;
+
+}
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+<header>
+    <div class="topnav">
+    <div class="topnav-right">
+        <a href="#"><i class="fas fa-bell" ></i></a>
+        <a href="#"><i class="far fa-comment-dots"></i></a>
+        <a href="#"><i class="fas fa-user" ></i><h6>{{ current_user.username}}</h6></a> 
+      </div>
+    </div>
+</header>
+
+<div class="sidenav">
+    <img src="logo.png" width="80px" height="60px">
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="#"><i class="far fa-file-alt"></i> Reports</a>
+    <a href="#"><i class="fas fa-bell"></i> Notifications</a>
+    <button class="dropdown-btn"><i class="far fa-folder"></i> Audit Program 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#">Audit Projects</a>
+    <a href="#">Audit List View</a>
+  </div>
+    <button class="dropdown-btn"><i class="fas fa-box-open"></i> Audit Resources 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Asset Identification</a>
+        <a href="#">Filter Search</a>
+      </div>
+    <button class="dropdown-btn"><i class="fas fa-universal-access"></i> Audit Universe 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <a href="#">Risk Prioritization</a>
+        <a href="#">Risk Assessment Detail</a>
+      </div>
+  
+  <a href="#contact"><i class="fas fa-calendar-week"></i> Calendar Events</a>
+  <a href="#contact"><i class="fas fa-cog"></i> Settings</a>
+  <a href="#contact"><i class="far fa-envelope"></i> Contact Us</a>
+ 
+  <button class="btn-logout"><i class="fas fa-sign-out-alt"></i>Log Out</button>
+  
+</div>
+
+<div class="main">
+    <div id="content">
+
+        {% block content %}
+        {% endblock content %}
+      
+      </div>
+</div>
+
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,170 @@
+{% extends 'sidenav.html'%}
+
+{% block content %}
+
+<style>
+
+#btn_cancel, #btn_save{
+  position: relative;
+  left: 610px;
+  border-radius: 50px;
+  width: 13%;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #ECECEC;;
+border-radius: 30px;
+color: black;
+}
+    
+li {
+float: left;
+}
+    
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+    
+li a:hover {
+background-color: #DADADA;
+border-radius: 30px;
+}
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+#form,#nav{
+background-color: white;
+}
+
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+    </style>
+
+    </head>
+    <body>
+    <div class="container" id="nav">
+      <h3>Audit Program
+        <button  id="btn_cancel" class="btn btn-danger ">Cancel</button>
+        <button  id="btn_save" class="btn btn-warning ">Save and Close</button> 
+      </h3>
+      <form action = "((url_for('create_audit')))"method="POST">
+    <ul>
+      <li><a href="#home">Internal Control Type</a></li>
+      <li><a href="#news">General Information</a></li>
+      <li><a href="#contact">Evidence</a></li>
+    </ul>
+    </div>
+    
+
+    <div class="container" id="form">
+      <form action="/action_page.php">
+      <div class="row">
+        <div class="col-25">
+          <label for="report">Report No:</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="report" name="report">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="title">Title:</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="title" name="title">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="internal_control">Internal Control:</label>
+        </div>
+        <div class="col-75">
+          <select id="internal_control" name="internal_control">
+            <option value="control">Access Internal Control</option>
+            <option value=""></option>
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="owner">Audit Owner:</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="owner" name="owner">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="date">Start Date:</label>
+          
+        </div>
+        <div class="col-75">
+          <form action="/action_page.php">
+            <input type="datetime-local" id="startdate" name="startdate">
+          </form>
+        </div>
+      </div>
+      
+      </form>
+    </div>
+
+    </body>
+            {% endblock content %}
+
+
+            

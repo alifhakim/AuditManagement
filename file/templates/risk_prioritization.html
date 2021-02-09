@@ -1,0 +1,181 @@
+{% extends 'sidenav.html'%}
+{% block content %}
+ 
+<style>
+  #btn_add, #btn_delete{
+  position: relative;
+  left: 480px;
+  border-radius: 50px;
+  width: 100px;
+}
+#btn_submit{
+  position: relative;
+  left: 0px;
+  border-radius: 30px;
+  width:100px;
+}
+
+#risk {
+  
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#risk td, #risk th, #add_prioritization td, #add_prioritization th  {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#risk tr {
+    background-color: #f2f2f2;}
+
+#risk tr:hover,  #add_prioritization tr:hover{background-color: #E5E5E5;}
+
+#risk th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #E5E5E5;
+  color: black;
+}
+    /* visited link */
+    a:visited {
+      color: black;
+    }
+    
+    /* mouse over link */
+    a:hover {
+      color: blue;
+    }
+    
+    /* selected link */
+    a:active {
+      color: gray;
+    }
+
+</style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+        <div class="container">
+            <div class="row">
+                <div class="col md-12">
+                    <div class="jumbotron p-3">
+                        <h2>Risk <b>Prioritization </b>  
+                            <button  id="btn_delete" class="btn btn-danger " onclick="return confirm('Are you sure to delete this risk?')">Delete</button>
+                            <button  id="btn_add" class="btn btn-success "
+                            data-toggle="modal" data-target="#mymodal">Add</button> 
+                        </h2>
+             
+             
+                            <table id="risk" class="table table-light">
+             
+                                <tr>
+             
+                                    <th>Low</th>
+                                    <th>Medium</th>
+                                    <th>High</th>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td>Medium Risk</td>
+                                    <td>High Risk</td>
+                                    <td>High Risk</td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td>Low Risk</td>
+                                    <td>Medium Risk</td>
+                                    <td>High Risk</td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td>Low Risk</td>
+                                    <td>Low Risk</td>
+                                    <td>Medium Risk</td>
+                                    
+                                </tr>
+                                
+                        
+             </div>
+             </div>
+             </div>
+             </div>
+            </table>
+          
+                             <!-- Modal Add Employee-->
+ 
+ 
+<div id="mymodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+       <div class="modal-content">
+        <div class="modal-header">
+        
+          <h4 class="modal-title">Add Prioritization</h4>
+        </div>
+          <div class="modal-body">
+  
+            <table id="add_prioritization" class="table table-light">
+             
+                <tr>
+
+                    <th>Title</th>
+                    
+                </tr>
+
+                <tr>
+                    <td><a href="#">Lose of Customer Data</a> </td>
+                </tr>
+
+                <tr>
+                    <td><a href="#">Customer Lose Due Covid</a></td>
+                </tr>
+
+                <tr>
+                   <td><a href="#">Lorem Ipsum</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#">Lorem Ipsum</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="#">Lorem Ipsum</a></td>
+                </tr>
+
+                
+                  
+  
+                </div>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button id="btn_submit" class="btn btn-primary" type="submit">Add</button>
+
+  
+       </div>
+  
+  
+    </div>
+  
+  
+ </div>
+  
+       
+ {% endblock content %}
+  
+ 
+                   
+                   

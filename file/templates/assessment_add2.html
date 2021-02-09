@@ -1,0 +1,155 @@
+{% extends 'sidenav.html'%}
+{% block content %}
+
+<style>
+
+#btn_add, #btn_reset{
+  position: relative;
+  left: 650px;
+  border-radius: 50px;
+  width: 100px;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #ECECEC;;
+border-radius: 30px;
+color: black;
+}
+    
+li {
+float: left;
+}
+    
+li a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+    
+li a:hover {
+background-color: #DADADA;
+border-radius: 30px;
+}
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+#form,#nav{
+background-color: white;
+}
+
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-right: 4px;
+}
+
+.col-25 {
+  float: left;
+  width: 8%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 40%;
+  margin-top: 6px;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+    </style>
+
+
+
+
+    </head>
+    <body>
+    <div class="container" id="nav">
+      <h3>Add Items (Risk Management)
+      </h3>
+      
+    <ul>
+      <li><a href="#home" class="active">General</a></li>
+      <li><a href="#news">Owner</a></li>
+    </ul>
+    </div>
+    
+
+    <div class="container" id="form">
+      <form action="/action_page.php">
+
+        <div class="row">
+            <div class="col-25">
+              <label for="stakeholder">Stakeholder</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-75">
+              <input type="text" id="stakeholder" name="stakeholder">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="owner">Owner</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-75">
+              <input type="text" id="owner" name="owner">
+            </div>
+        </div>
+        
+     
+      <div>
+        <button  id="btn_reset" class="btn btn-reset " onclick="return confirm('Are you sure to cancel?')">Cancel</button>
+        <button  id="btn_add" class="btn btn-success "
+         data-toggle="modal" data-target="#mymodal">Add</button> 
+      </div>
+
+
+      </form>
+    </div>
+
+
+    </body>
+            {% endblock content %}
+
+
+            
